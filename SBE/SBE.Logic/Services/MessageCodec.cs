@@ -5,17 +5,34 @@ using SBE.Logic.Validators;
 
 namespace SBE.Logic.Services
 {
+    /// <summary>
+    /// Represents a message codec that encodes and decodes messages using an encoder, decoder, and message validator.
+    /// </summary>
     public class MessageCodec : IMessageCodec
     {
         private IEncoder _encoder { get; set; }
         private IDecoder _decoder { get; set; }
         private MessageValidator _messageValidator { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the MessageCodec class with the provided encoder, decoder, and message validator.
+        /// </summary>
+        /// <param name="encoder">The encoder used to encode messages.</param>
+        /// <param name="decoder">The decoder used to decode messages.</param>
+        /// <param name="messageValidator">The message validator used to validate messages.</param>
         public MessageCodec(IEncoder encoder, IDecoder decoder, MessageValidator messageValidator)
         {
             _encoder = encoder;
             _decoder = decoder;
             _messageValidator = messageValidator;
         }
+
+        /// <summary>
+        /// Encodes a Message object into a byte array.
+        /// </summary>
+        /// <param name="message">The Message object to encode.</param>
+        /// <returns>A byte array representing the encoded message.</returns>
+        /// <exception cref="ValidationException">Thrown if the message fails validation.</exception>
         public byte[] Encode(Message message)
         {
             // Validating the message
@@ -48,6 +65,12 @@ namespace SBE.Logic.Services
                 return stream.ToArray();
             }
         }
+
+        /// <summary>
+        /// Decodes a byte array into a Message object.
+        /// </summary>
+        /// <param name="input">The byte array to decode into a Message.</param>
+        /// <returns>A Message object representing the decoded data.</returns>
         public Message Decode(byte[] input)
         {
             using (MemoryStream stream = new MemoryStream(input))
