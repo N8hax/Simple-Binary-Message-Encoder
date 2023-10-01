@@ -14,20 +14,20 @@ var message = new Message()
     },
     Payload = new byte[] { 1,2,3}
 };
-Console.BackgroundColor = ConsoleColor.Red;
+Console.ForegroundColor = ConsoleColor.Red;
 Console.WriteLine("---Welcome to Simple Binary Message Encoder---");
 Console.WriteLine("");
-Console.BackgroundColor = ConsoleColor.Green;
+Console.ForegroundColor = ConsoleColor.Green;
 Console.WriteLine($"This is the plain message: {message.ToReadableString()}");
 Console.WriteLine("");
 var encodedMessage = messageCodec.Encode(message);
-Console.BackgroundColor = ConsoleColor.Blue;
+Console.ForegroundColor = ConsoleColor.Blue;
 Console.WriteLine($"This is the message after ecnoding: {encodedMessage.ToReadableString()}");
 Console.WriteLine("");
 var decodedMessage = messageCodec.Decode(encodedMessage);
-Console.BackgroundColor = ConsoleColor.Green;
+Console.ForegroundColor = ConsoleColor.Green;
 Console.WriteLine($"This is the message after denoding: {decodedMessage.ToReadableString()}");
 Console.WriteLine("");
-Console.BackgroundColor = ConsoleColor.Black;
+Console.ForegroundColor = ConsoleColor.Black;
 
 
